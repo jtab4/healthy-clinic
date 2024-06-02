@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
 
+import {createBrowserRouter,RouterProvider} from 'react-router-dom'
+import Homepage from "./components/HomePage"
+import LoginPage from "./components/LoginPage"
+import RegisterPage from "./components/RegisterPage"
+import Dashboard from "./components/Dashboard"
+import CreateTask from "./components/CreateTask"
+import EditTask from "./components/EditTask"
 function App() {
+  
+  const routes = createBrowserRouter([
+    {path: '/', element : <Homepage></Homepage>},
+    {path : '/login', element : <LoginPage></LoginPage>},
+    {path : '/register', element : <RegisterPage></RegisterPage>},
+    {path : '/dashboard', element : <Dashboard></Dashboard>},
+    {path : '/task/create', element : <CreateTask></CreateTask>},
+    {path : '/task/:taskId/edit', element : <EditTask></EditTask>},
+    
+  ])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <RouterProvider router={routes}></RouterProvider>
+    </>
+  )
 }
 
-export default App;
+export default App
