@@ -3,3 +3,8 @@
 @tailwind utilities;
 
 @fontsource/roboto;
+
+
+body {
+    font-family: 'Inter', sans-serif;
+}
