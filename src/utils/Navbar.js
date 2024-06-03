@@ -19,7 +19,7 @@ const Navbar = () => {
                     </div>
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex-shrink-0">
-                            <img className="h-8 w-auto" src="https://w7.pngwing.com/pngs/786/126/png-transparent-logo-contracting-photography-logo-symbol.png" alt="Logo" />
+                            
                         </div>
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
