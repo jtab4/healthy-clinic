@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.contrib.auth.hashers import make_password,check_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import User
+from .models import User,Task
 from .serializers.user_serializer import UserSerializer
 from .serializers.task_serializer import TaskSerializer
 from rest_framework import status
 from rest_framework_simplejwt.tokens import RefreshToken
-
+from rest_framework.parsers import JSONParser
 
 
 class UserList(APIView):
@@ -56,10 +56,18 @@ class LoginUser(APIView):
 class CreateTask(APIView):
     def post(self, request):
         data = request.data
-        data['deadline'] = now()  
         serializer = TaskSerializer(data=data)
         
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+
+class GetUserTasks(APIView):
+    def get(self, request, user_email, format=None):
+        tasks = Task.objects.all()
+        print(user_email)
+        serializer = TaskSerializer(tasks, many=True)
+        return Response(serializer.data)

@@ -19,11 +19,16 @@ from django.urls import path
 from myapp.views import UserList
 from myapp.views import CreateUser
 from myapp.views import LoginUser
+from myapp.views import CreateTask
+from myapp.views import GetUserTasks
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/',UserList.as_view(), name="user_list"),
     path('create-user/', CreateUser.as_view(), name='create-user'),
     path('login/',LoginUser.as_view(),name="login"),
+    path('create-task',CreateTask.as_view(),name="create-task"),
+    path('get-tasks/<user_email>/',GetUserTasks.as_view(), name='get_user_tasks'),
+
    
 ]
