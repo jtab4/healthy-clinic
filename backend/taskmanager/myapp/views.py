@@ -67,7 +67,17 @@ class CreateTask(APIView):
 
 class GetUserTasks(APIView):
     def get(self, request, user_email, format=None):
-        tasks = Task.objects.all()
+        tasks=Task.objects.filter(email_user=user_email)
         print(user_email)
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
+
+
+class DeleteTask(APIView):
+    def delete(self, request, task_id, format=None):
+        try:
+            task = Task.objects.get(id=task_id) 
+            task.delete()  # Delete the task
+            return Response(status=status.HTTP_204_NO_CONTENT)  
+        except Task.DoesNotExist:
+            return HttpResponseNotFound('Task with ID not found.')

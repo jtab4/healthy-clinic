@@ -21,6 +21,7 @@ from myapp.views import CreateUser
 from myapp.views import LoginUser
 from myapp.views import CreateTask
 from myapp.views import GetUserTasks
+from myapp.views import DeleteTask
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,6 +30,7 @@ urlpatterns = [
     path('login/',LoginUser.as_view(),name="login"),
     path('create-task',CreateTask.as_view(),name="create-task"),
     path('get-tasks/<user_email>/',GetUserTasks.as_view(), name='get_user_tasks'),
+     path('delete-task/<int:task_id>/', DeleteTask.as_view(), name='delete-task'),
 
    
 ]

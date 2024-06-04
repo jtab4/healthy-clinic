@@ -14,7 +14,7 @@ const Dashboard = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [taskName, setTaskName] = useState('');
     const [deadline, setDeadline] = useState('');
-    const [level,setLevel] = useState('')
+    const [level,setLevel] = useState('easy')
 
     const [fetchedTasks, setFetchedTasks] = useState([]); 
 
@@ -83,6 +83,10 @@ const Dashboard = () => {
         setLevel(e.target.value)
     }
 
+    const handleTaskDelete = (deletedTaskId) => {
+      console.log(deletedTaskId)
+    };
+
     return (
         <div className="flex flex-col h-screen">
       <Navbar />
@@ -93,7 +97,8 @@ const Dashboard = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             
             {fetchedTasks.map((task) => (
-              <Task key={task.id} task={task} />
+             <Task  key={task.id} task={task} deleteState={handleTaskDelete} />
+
             ))}
             <div className="bg-blue-500 rounded-lg p-4 flex items-center justify-center">
               <button onClick={handleAddTask} className="bg-slate-50 text-white font-bold py-2 px-4 rounded-full">
