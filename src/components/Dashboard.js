@@ -84,7 +84,11 @@ const Dashboard = () => {
     }
 
     const handleTaskDelete = (deletedTaskId) => {
-      console.log(deletedTaskId)
+      const updatedTasks = fetchedTasks.filter((task) => task.id !== deletedTaskId);
+
+      
+      setFetchedTasks(updatedTasks);
+      console.log(`Usunięto zadanie o identyfikatorze: ${deletedTaskId}`);
     };
 
     return (
